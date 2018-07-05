@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Library Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'library/styles.css' %}" type="text/css">
+</head>
+    <body>
+    <header>
+        {% block header %}
+       {% endblock %}
+    </header>
+       {% block body %}
+       {% endblock %}
+    </body>
+</html>

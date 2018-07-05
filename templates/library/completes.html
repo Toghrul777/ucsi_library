@@ -1,0 +1,23 @@
+{%  extends 'library/base.html' %}
+
+{% block header %}
+    <h1>Library</h1>
+    <a href="{% url 'borrows' %}">Borrows</a>
+    <a href="{% url 'completes' %}">Completes</a>
+{% endblock %}
+
+
+{% block body %}
+    <div class="datecontain">
+        <h3>Returned</h3>
+        <ul>
+            {% for borrow in completes %}
+                <li>
+                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                </li>
+            {% empty %}
+                <li class="emptytext">no books returned</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{%  extends 'library/base.html' %}
+
+{% block header %}
+    <h1>Library</h1>
+    <a href="{% url 'borrows' %}">Borrows</a>
+    <a href="{% url 'completes' %}">Completes</a>
+{% endblock %}
+
+
+{% block body %}
+    <div class="datecontain">
+        <h3>Overdue</h3>
+        <ul>
+            {% for borrow in overdue %}
+                <li>
+                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                </li>
+            {% empty %}
+                <li class="emptytext">no books overdue</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="datecontain">
+        <h3>Today</h3>
+        <ul>
+            {% for borrow in today %}
+                <li>
+                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                </li>
+            {% empty %}
+                <li class="emptytext">no books due today</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="datecontain">
+        <h3>This Week</h3>
+        <ul>
+            {% for borrow in week %}
+                <li>
+                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                </li>
+            {% empty %}
+                <li class="emptytext">no books due this week</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="datecontain">
+        <h3>Later</h3>
+        <ul>
+            {% for borrow in later %}
+                <li>
+                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                </li>
+            {% empty %}
+                <li class="emptytext">no books due later</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{%  extends 'library/base.html' %}
+
+{% block header %}
+    <a href="{% url borrow.returned|yesno:"completes,borrows" %}">Back</a>
+{% endblock %}
+
+
+{% block body %}
+        <ul>
+                <li> Name: {{  borrow.borrower.name }} </li>
+                <li> ISBN Number: {{  borrow.isbn }} </li>
+                <li> Supervising Teacher: {{  borrow.teacher }} </li>
+                <li> Contact: {{  borrow.contact }} </li>
+                <li> Taken Date: {{ taken }}</li>
+                <li> Due Date: {{ due }}</li>
+        </ul>
+            <form action="{% url 'returned' borrow.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" name="returned" value={{ borrow.returned|yesno:"Unreturned, Returned"}}>
+                <input type="submit" name="delete" value="Delete">
+            </form>
+{% endblock %}
