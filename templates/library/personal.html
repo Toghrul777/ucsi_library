@@ -1,15 +1,22 @@
 {% extends 'library/base.html' %}
 
 {% block header %}
-    <h1>Welcome {{ name }}!</h1>
+    <h1 class="welcome">Welcome {{ name }}!</h1>
     <a href="{% url 'logout'%}?next={{request.path}}">Log Out</a>
 {% endblock %}
 
 {% block body %}
+    {{ data.title }}
     <h3>Current Books</h3>
     {% for borrow in borrows %}
-        <div class="book-display">
-            {{ borrow }}
-        </div>
+        <ul>
+            <li class="bookreel">
+                <div class="bookdisplay">
+                    <img class="thumbnail" src="{{ borrow.image }}"/>
+                    <p class="title">{{ borrow.title }}</p>
+                    <p class="due">due on {{ borrow.due|date:'l F jS'}}</p>
+                </div>
+            </li>
+        </ul>
     {% endfor %}
 {% endblock %}

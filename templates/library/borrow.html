@@ -11,12 +11,17 @@
                 <li> ISBN Number: {{  borrow.isbn }} </li>
                 <li> Supervising Teacher: {{  borrow.teacher }} </li>
                 <li> Contact: {{  borrow.contact }} </li>
-                <li> Taken Date: {{ taken }}</li>
-                <li> Due Date: {{ due }}</li>
+                <li> Taken Date: {{ borrow.taken|date:'jS F Y' }}</li>
+                <li> Due Date: {{ borrow.due|date:'jS F Y' }}</li>
         </ul>
-            <form action="{% url 'returned' borrow.id %}" method="post">
-                {% csrf_token %}
-                <input type="submit" name="returned" value={{ borrow.returned|yesno:"Unreturned, Returned"}}>
-                <input type="submit" name="delete" value="Delete">
-            </form>
+        <form action="{% url 'returned' borrow.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="returned" value={{ borrow.returned|yesno:"Unreturned, Returned"}}>
+            <input type="submit" name="delete" value="Delete">
+        </form>
+        <div class="bookdisplay">
+            <img class="thumbnail" src="{{ borrow.image }}"/>
+            <p class="title">{{ borrow.title }}</p>
+            <p class="author">{{ borrow.author }}</p>
+        </div>
 {% endblock %}

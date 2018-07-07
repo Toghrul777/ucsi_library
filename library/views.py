@@ -1,26 +1,15 @@
-import requests
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.utils.dateformat import format
 from datetime import date, timedelta
 
-from library.models import Borrow, Student
+from library.models import Borrow
 from library.forms import EntryForm, SignUpForm
 
-
-url = 'http://maps.googleapis.com/maps/api/directions/json'
-
-params = dict(
-    isbn="9788884516794"
-)
-
-resp = requests.get(url=url, params=params)
-data = resp.json()
 
 @login_required
 def borrows(request):
@@ -36,7 +25,7 @@ def borrows(request):
     else:
         context = {
             "name": request.user.student.first().name,
-            "borrows": request.user.student.first().books.filter(returned__exact=False).all()
+            "borrows": request.user.student.first().books.filter(returned__exact=False).all(),
         }
         return render(request, "library/personal.html", context)
 
@@ -58,8 +47,6 @@ def borrow(request, borrow_id):
 
     context = {
         "borrow": borrow,
-        "taken": format(borrow.taken, 'jS F Y'),
-        "due": format(borrow.due, 'jS F Y')
     }
     return render(request, "library/borrow.html", context)
 
