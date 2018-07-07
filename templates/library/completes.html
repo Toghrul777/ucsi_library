@@ -14,7 +14,13 @@
         <ul>
             {% for borrow in completes %}
                 <li>
-                    <a href="{% url 'borrow' borrow.id%}">{{ borrow }}</a>
+                   <a href="{% url 'borrow' borrow.id%}">
+                        <span class="name">{{ borrow.borrower }}</span>
+                        returned this book that was
+                        <span class="title">{{ borrow.title }}</span>
+                        due on
+                        <span class="due">{{ borrow.due|date:"l jS F" }}</span>
+                    </a>
                 </li>
             {% empty %}
                 <li class="emptytext">no books returned</li>
