@@ -1,0 +1,14 @@
+{%  extends "library/base.html" %}
+
+ {% block header %}
+     <h2>New Borrow</h2>
+     <a href="{% url "borrows" %}">Back</a>
+ {% endblock %}
+
+ {% block body %}
+     <form method="POST">
+        {% csrf_token %}
+            {{ form }}
+         <input type="submit" value="Create New Borrow">
+     </form>
+ {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'library/base.html' %}
+
+{% block header %}
+    <h1>Welcome {{ name }}!</h1>
+    <a href="{% url 'logout'%}?next={{request.path}}">Log Out</a>
+{% endblock %}
+
+{% block body %}
+    <h3>Current Books</h3>
+    {% for borrow in borrows %}
+        <div class="book-display">
+            {{ borrow }}
+        </div>
+    {% endfor %}
+{% endblock %}

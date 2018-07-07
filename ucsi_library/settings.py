@@ -125,3 +125,4 @@ STATIC_URL = '/static/'
 #custom
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'

@@ -1,0 +1,14 @@
+{%  extends "library/base.html" %}
+
+ {% block header %}
+     <h2>Register</h2>
+     <a href="{% url "login" %}">Back</a>
+ {% endblock %}
+
+ {% block body %}
+     <form method="POST">
+        {% csrf_token %}
+         {{ form }}
+         <input type="submit" value="Sign Up">
+     </form>
+ {% endblock %}

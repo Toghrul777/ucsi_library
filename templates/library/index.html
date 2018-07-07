@@ -2,12 +2,15 @@
 
 {% block header %}
     <h1>Library</h1>
+    <a href="{% url 'add' %}">Add</a>
     <a href="{% url 'borrows' %}">Borrows</a>
     <a href="{% url 'completes' %}">Completes</a>
+    <a href="{% url 'logout'%}?next={{request.path}}">Log Out</a>
 {% endblock %}
 
 
 {% block body %}
+    {{ name }}
     <div class="datecontain">
         <h3>Overdue</h3>
         <ul>

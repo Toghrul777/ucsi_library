@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+
+from django.contrib.auth.models import User
 from django.utils.dateformat import format
 from django.db import models
 
@@ -17,6 +19,7 @@ def get_due():
 
 class Student(models.Model):
     name = models.CharField(max_length=64)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="student")
 
     class Meta:
         ordering = ["id"]
